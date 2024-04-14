@@ -19,7 +19,6 @@ const authRouter_1 = require("./routers/authRouter");
 const userRouter_1 = __importDefault(require("./routers/userRouter"));
 const messageRouter_1 = __importDefault(require("./routers/messageRouter"));
 const conversationRouter_1 = __importDefault(require("./routers/conversationRouter"));
-const colections_1 = require("./DB/collections/colections");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
@@ -29,18 +28,10 @@ app.use("/user", userRouter_1.default);
 app.use("/message", messageRouter_1.default);
 app.use("/conversation", conversationRouter_1.default);
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.query;
-    let users;
-    if (id) {
-        users = yield colections_1.Users.findById(id);
-    }
-    else {
-        users = yield colections_1.Users.find();
-    }
-    res.send({ users: users });
+    res.send({ message: "hellow world" });
 }));
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    yield mongoose_1.default.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@chat-app-db.hk0ts7w.mongodb.net/chat-app-DB?retryWrites=true&w=majority&appName=chat-app-DB`);
+    mongoose_1.default.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@chat-app-db.hk0ts7w.mongodb.net/chat-app-DB?retryWrites=true&w=majority&appName=chat-app-DB`);
     console.log(`Server is running at ${port}`);
 }));
 //# sourceMappingURL=index.js.map

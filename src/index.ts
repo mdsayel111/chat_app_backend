@@ -17,18 +17,10 @@ app.use("/user", userRouter)
 app.use("/message", messageRouter)
 app.use("/conversation", conversationRouter)
 app.get("/", async (req: Request, res: Response) => {
-    const { id } = req.query
-    let users
-    if (id) {
-        users = await Users.findById(id)
-    } else {
-        users = await Users.find()
-    }
-
-    res.send({ users: users })
+    res.send({ message: "hellow world" })
 })
 
 app.listen(port, async () => {
-    await mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@chat-app-db.hk0ts7w.mongodb.net/chat-app-DB?retryWrites=true&w=majority&appName=chat-app-DB`);
+    mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@chat-app-db.hk0ts7w.mongodb.net/chat-app-DB?retryWrites=true&w=majority&appName=chat-app-DB`);
     console.log(`Server is running at ${port}`);
 });
