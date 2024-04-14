@@ -14,7 +14,6 @@ const colections_1 = require("../DB/collections/colections");
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.query;
     let users;
-    console.log(id);
     if (id) {
         users = yield colections_1.Users.findById(id);
     }
