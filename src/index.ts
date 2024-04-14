@@ -16,7 +16,7 @@ app.use("/user", userRouter)
 app.use("/message", messageRouter)
 app.use("/conversation", conversationRouter)
 app.get("/",async (req: Request, res: Response) => {
-    res.send({message: "hellow world"})
+    res.send({message: "hellow world!!!!!!!!"})
 })
 
 app.listen(port, async () => {
