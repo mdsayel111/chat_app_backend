@@ -20,18 +20,28 @@ exports.userSchema = new mongoose_1.default.Schema({
                 ref: 'user'
             }], default: []
     }
-});
+}, { timestamps: true });
 exports.messageSchema = new mongoose_1.default.Schema({
     senderId: {
         type: mongoose_1.default.Types.ObjectId,
         ref: 'user'
     },
     message: String
-});
+}, { timestamps: true });
 exports.conversationSchema = new mongoose_1.default.Schema({
-    groupImg: String,
-    members: [{ type: mongoose_1.default.Types.ObjectId, ref: "users" }],
-    type: String,
+    img: String,
+    members: {
+        type: [{ type: mongoose_1.default.Types.ObjectId, ref: "users" }],
+        required: [true, "members array is missing"]
+    },
+    messages: {
+        type: [{ type: mongoose_1.default.Types.ObjectId, ref: "messages" }],
+        default: []
+    },
+    type: {
+        type: String,
+        default: null
+    },
     name: String
-});
+}, { timestamps: true });
 //# sourceMappingURL=schemas.js.map

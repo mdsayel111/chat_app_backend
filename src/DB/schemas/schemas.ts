@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 export const userSchema = new mongoose.Schema({
     userName: {
@@ -16,7 +17,7 @@ export const userSchema = new mongoose.Schema({
         }], default: []
     }
 
-});
+}, { timestamps: true });
 
 export const messageSchema = new mongoose.Schema({
     senderId: {
@@ -24,14 +25,24 @@ export const messageSchema = new mongoose.Schema({
         ref: 'user'
     },
     message: String
-});
+}, { timestamps: true });
 
 export const conversationSchema = new mongoose.Schema({
-    groupImg: String,
-    members: [{ type: mongoose.Types.ObjectId, ref: "users" }],
-    type: String,
+    img: String,
+    members: {
+        type: [{ type: mongoose.Types.ObjectId, ref: "users" }],
+        required: [true, "members array is missing"]
+    },
+    messages: {
+        type: [{ type: mongoose.Types.ObjectId, ref: "messages" }],
+        default: []
+    },
+    type: {
+        type: String,
+        default: null
+    },
     name: String
 
-});
+}, { timestamps: true });
 
 
