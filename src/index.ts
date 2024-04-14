@@ -5,6 +5,7 @@ import { authRouter } from "./routers/authRouter";
 import userRouter from "./routers/userRouter";
 import messageRouter from "./routers/messageRouter";
 import conversationRouter from "./routers/conversationRouter";
+import { Users } from "./DB/collections/colections";
 dotenv.config();
 
 const app: Express = express();
@@ -15,8 +16,16 @@ app.use("/auth", authRouter)
 app.use("/user", userRouter)
 app.use("/message", messageRouter)
 app.use("/conversation", conversationRouter)
-app.get("/",async (req: Request, res: Response) => {
-    res.send({message: "hellow world!!!!!!!!"})
+app.get("/", async (req: Request, res: Response) => {
+    const { id } = req.query
+    let users
+    if (id) {
+        users = await Users.findById(id)
+    } else {
+        users = await Users.find()
+    }
+
+    res.send({ users: users })
 })
 
 app.listen(port, async () => {
