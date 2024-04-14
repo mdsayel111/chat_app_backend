@@ -2,8 +2,8 @@ import { Request, Response } from "express"
 import { Conversations } from "../DB/collections/colections"
 
 export const getConversation = async (req: Request, res: Response) => {
-    const { id } = req.query
-    const conversations = await Conversations.find({ members: id })
+    const { id, type } = req.query
+    const conversations = await Conversations.find({ members: id, type })
     res.send({ conversations })
 }
 

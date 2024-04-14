@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postConversation = exports.getConversation = void 0;
 const colections_1 = require("../DB/collections/colections");
 const getConversation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.query;
-    const conversations = yield colections_1.Conversations.find({ members: id });
+    const { id, type } = req.query;
+    const conversations = yield colections_1.Conversations.find({ members: id, type });
     res.send({ conversations });
 });
 exports.getConversation = getConversation;
