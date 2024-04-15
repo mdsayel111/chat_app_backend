@@ -31,7 +31,7 @@ app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send({ message: "hellow world" });
 }));
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    yield mongoose_1.default.connect(process.env.DB_URI);
+    mongoose_1.default.connect(process.env.DB_URI);
     console.log(`Server is running at ${port}`);
 }));
 //# sourceMappingURL=index.js.map
