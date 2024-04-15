@@ -5,7 +5,6 @@ import { authRouter } from "./routers/authRouter";
 import userRouter from "./routers/userRouter";
 import messageRouter from "./routers/messageRouter";
 import conversationRouter from "./routers/conversationRouter";
-import { Users } from "./DB/collections/colections";
 dotenv.config();
 
 const app: Express = express();
@@ -21,6 +20,6 @@ app.get("/", async (req: Request, res: Response) => {
 })
 
 app.listen(port, async () => {
-    mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@chat-app-db.hk0ts7w.mongodb.net/chat-app-DB?retryWrites=true&w=majority&appName=chat-app-DB`);
+    await mongoose.connect(process.env.DB_URI);
     console.log(`Server is running at ${port}`);
 });
