@@ -31,7 +31,7 @@ app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send({ message: "hellow world" });
 }));
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    mongoose_1.default.connect(process.env.DB_URI);
+    yield mongoose_1.default.connect("mongodb+srv://mdsayel111:DdxSBntwqzuYkxJw@cluster0.yl5wqq8.mongodb.net/chat-app-DB-2?retryWrites=true&w=majority&appName=Cluster0");
     console.log(`Server is running at ${port}`);
 }));
 //# sourceMappingURL=index.js.map

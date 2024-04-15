@@ -20,6 +20,6 @@ app.get("/", async (req: Request, res: Response) => {
 })
 
 app.listen(port, async () => {
-    mongoose.connect(process.env.DB_URI);
+    await mongoose.connect("mongodb+srv://mdsayel111:DdxSBntwqzuYkxJw@cluster0.yl5wqq8.mongodb.net/chat-app-DB-2?retryWrites=true&w=majority&appName=Cluster0");
     console.log(`Server is running at ${port}`);
 });
