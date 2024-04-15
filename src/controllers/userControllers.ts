@@ -8,6 +8,7 @@ export const getUsers = async (req: Request, res: Response) => {
         users = await Users.findById(id)
     } else {
         users = await Users.find()
+        console.log("find done")
     }
 
     res.send({ users: users })

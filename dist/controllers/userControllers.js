@@ -19,6 +19,7 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     else {
         users = yield colections_1.Users.find();
+        console.log("find done");
     }
     res.send({ users: users });
 });
