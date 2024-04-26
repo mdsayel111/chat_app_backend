@@ -12,15 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUsers = void 0;
 const colections_1 = require("../DB/collections/colections");
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const cookies = req.cookies;
+    console.log(cookies);
     const { id } = req.query;
     let users;
     if (id) {
         users = yield colections_1.Users.findById(id);
     }
     else {
-        console.log("before find");
         users = yield colections_1.Users.find();
-        console.log("after find");
     }
     res.send({ users: users });
 });

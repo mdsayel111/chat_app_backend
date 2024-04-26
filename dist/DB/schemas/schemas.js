@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.conversationSchema = exports.messageSchema = exports.userSchema = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
 exports.userSchema = new mongoose_1.default.Schema({
     userName: {
         type: String,
@@ -44,4 +45,7 @@ exports.conversationSchema = new mongoose_1.default.Schema({
     },
     name: String
 }, { timestamps: true });
+exports.userSchema.pre("save", function () {
+    this.password = bcrypt_1.default.hashSync(this.password, Number(process.env.SALT_ROUND));
+});
 //# sourceMappingURL=schemas.js.map

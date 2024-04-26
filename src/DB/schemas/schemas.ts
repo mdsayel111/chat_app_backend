@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { type } from "os";
+import bcrypt from "bcrypt"
 
 export const userSchema = new mongoose.Schema({
     userName: {
@@ -46,3 +46,6 @@ export const conversationSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 
+userSchema.pre("save", function () {
+    this.password = bcrypt.hashSync(this.password, Number(process.env.SALT_ROUND));
+})
